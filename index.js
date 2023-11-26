@@ -17,7 +17,7 @@ morgan.token('note', (request, response) => {
  
 })
 
-app.use(morgan(':method :url :res[content-length] : response-time ms :note'));
+app.use(morgan(':method :url :res[content-length] :response-time ms :note'));
 
 let notes = [
   {

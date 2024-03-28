@@ -7,8 +7,12 @@ if (process.argv.length<3) {
 
 const password = process.argv[2];
 
-const url =
-  `mongodb+srv://haroldnwosu:${password}@cluster0.hhbc8xk.mongodb.net/noteApp?retryWrites=true&w=majority`;
+// main url
+// const url =
+//   `mongodb+srv://haroldnwosu:${password}@cluster0.hhbc8xk.mongodb.net/noteApp?retryWrites=true&w=majority`;
+
+//  test url
+const url = `mongodb+srv://haroldnwosu:${password}@cluster0.rkbz218.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.set("strictQuery",false);
 mongoose.connect(url);
@@ -20,20 +24,31 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model("Note", noteSchema);
 
-// const note = new Note({
-//   content: 'Mongo is the database',
-//   important: true,
-// })
+const note1 = new Note({
+  content: "Mongo is the database",
+  important: true,
+});
 
-// note.save().then(result => {
-//     console.log('note saved!')
-//     console.log(result)
-//     mongoose.connection.close()
-// })
+note1.save().then(result => {
+    console.log("note 1 saved!");
+    console.log(result);
+    // mongoose.connection.close();
+});
 
-Note.find({}).then(result => {
-    result.forEach(note => {
-        console.log(note);
-    });
+const note2 = new Note({
+  content: "Trying out testing DB",
+  important: false,
+});
+
+note2.save().then(result => {
+    console.log("note 2 saved!");
+    console.log(result);
     mongoose.connection.close();
 });
+
+// Note.find({}).then(result => {
+//     result.forEach(note => {
+//         console.log(note);
+//     });
+//     mongoose.connection.close();
+// });
